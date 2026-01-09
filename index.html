@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eli Kiprop - Web Developer</title>
+    <meta name="description" content="Eli Kiprop - Full Stack Web Developer Portfolio showcasing skills, projects, and experience">
+    <title>Eli Kiprop - Full Stack Web Developer</title>
     <style>
         * {
             margin: 0;
@@ -15,10 +16,8 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow-x: hidden;
+            padding: 2rem 0;
         }
 
         .container {
@@ -26,8 +25,9 @@
             backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 3rem;
-            max-width: 500px;
+            max-width: 1200px;
             width: 90%;
+            margin: 0 auto;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
@@ -51,16 +51,17 @@
             text-align: center;
             position: relative;
             z-index: 2;
+            margin-bottom: 3rem;
         }
 
         .profile-image {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             position: relative;
             overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            border: 5px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
@@ -82,24 +83,20 @@
             transform: scale(1.1);
         }
 
-        .profile-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .profile-image:hover::after {
-            opacity: 1;
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .username {
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
@@ -109,17 +106,44 @@
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
+        .tagline {
+            font-size: 1.3rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
         .bio {
             color: #4a5568;
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 1.8;
             margin-bottom: 1rem;
-            opacity: 0.8;
+            opacity: 0.9;
             animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
-        .bio:last-child {
-            margin-bottom: 0;
+        .section {
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
         }
 
         .highlight {
@@ -130,46 +154,207 @@
             color: #2d3748;
         }
 
-        .skills {
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-category-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            justify-content: center;
-            margin-top: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
 
         .skill-tag {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 500;
             transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-tag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .skill-tag:hover::before {
-            left: 100%;
         }
 
         .skill-tag:hover {
             transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .experience-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-company {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-date {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .experience-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
         }
 
         .social-links {
@@ -177,12 +362,11 @@
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.8s both;
         }
 
         .social-link {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
             display: flex;
@@ -191,22 +375,75 @@
             color: white;
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .social-link:hover {
-            transform: translateY(-3px) rotate(5deg);
+            transform: translateY(-5px) rotate(5deg);
             box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
         }
 
+        .contact-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-details h4 {
+            color: #2d3748;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details p {
+            color: #667eea;
+            font-weight: 600;
+        }
+
         .floating-elements {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
             overflow: hidden;
+            z-index: 1;
         }
 
         .floating-element {
@@ -217,27 +454,35 @@
         }
 
         .floating-element:nth-child(1) {
-            width: 20px;
-            height: 20px;
-            top: 20%;
+            width: 80px;
+            height: 80px;
+            top: 10%;
             left: 10%;
             animation-delay: 0s;
         }
 
         .floating-element:nth-child(2) {
-            width: 15px;
-            height: 15px;
+            width: 60px;
+            height: 60px;
             top: 60%;
             right: 15%;
             animation-delay: 2s;
         }
 
         .floating-element:nth-child(3) {
-            width: 25px;
-            height: 25px;
+            width: 100px;
+            height: 100px;
             bottom: 20%;
             left: 20%;
             animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            top: 40%;
+            right: 30%;
+            animation-delay: 1s;
         }
 
         @keyframes slideIn {
@@ -272,81 +517,569 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        @media (max-width: 600px) {
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @media (max-width: 768px) {
             .container {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
                 margin: 1rem;
             }
             
             .username {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
             
-            .bio {
-                font-size: 1rem;
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .projects-grid,
+            .stats-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline {
+                padding-left: 1rem;
+            }
+
+            .experience-item {
+                padding-left: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
     <div class="container">
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
-        
         <div class="profile-header">
+            <div class="status-badge">🚀 Available for Opportunities</div>
+            
             <div class="profile-image">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Eli Kiprop" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjNjY3ZWVhIi8+CjxjaXJjbGUgY3g9Ijc1IiBjeT0iNjAiIHI9IjI1IiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMzAgMTIwYzAtMjUgMjAtNDUgNDUtNDVzNDUgMjAgNDUgNDV2MzBIMzB2LTMweiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+'">
             </div>
             
-            <h1 class="username">@Eli Ndiema</h1>
+            <h1 class="username">Eli Kiprop Ndiema</h1>
+            <p class="tagline">Full Stack Web Developer & Educator</p>
             
             <p class="bio">
-                I am an <span class="highlight">IT student</span> passionate about teaching HTML and web development
+                I am a passionate <span class="highlight">IT student and web developer</span> specializing in modern web technologies and frameworks. With a strong foundation in both frontend and backend development, I create responsive, user-friendly, and scalable web applications.
             </p>
             
             <p class="bio">
-                Aspiring to become a <span class="highlight">professional web developer</span> and create amazing digital experiences
+                My journey in web development started with a curiosity for how websites work and evolved into a deep passion for creating digital solutions that solve real-world problems. I enjoy teaching HTML, CSS, and JavaScript to aspiring developers and sharing knowledge with the community.
             </p>
             
             <p class="bio">
-                Thank you for supporting my web development journey! 🚀
+                Currently focused on mastering <span class="highlight">React, Django, and Laravel</span> while exploring emerging technologies like Next.js and advanced JavaScript frameworks. I believe in continuous learning and staying updated with the latest industry trends.
             </p>
         </div>
-        
-        <div class="skills">
-            <span class="skill-tag">HTML5</span>
-            <span class="skill-tag">CSS3</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">Web Design</span>
-            <span class="skill-tag">Django</span>
-            <span class="skill-tag">Sencha EXTJS</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Laravel</span>
-            <span class="skill-tag">NextJs</span>
+
+        <div class="section">
+            <h2 class="section-title">📊 Professional Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Students Taught</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Technologies Mastered</div>
+                </div>
+            </div>
         </div>
-        
-        <div class="social-links">
-            <a href="#" class="social-link" title="GitHub">
-                <span>⚡</span>
-            </a>
-            <a href="#" class="social-link" title="LinkedIn">
-                <span>💼</span>
-            </a>
-            <a href="#" class="social-link" title="Twitter">
-                <span>🐦</span>
-            </a>
-            <a href="#" class="social-link" title="Portfolio">
-                <span>🌐</span>
-            </a>
+
+        <div class="section">
+            <h2 class="section-title">💼 Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-title">Full Stack Web Developer</div>
+                    <div class="experience-company">Freelance / Self-Employed</div>
+                    <div class="experience-date">2022 - Present</div>
+                    <div class="experience-description">
+                        Developing custom web applications for clients using modern frameworks like React, Django, and Laravel. Specializing in creating responsive, performance-optimized solutions that meet client requirements. Successfully delivered over 30 projects ranging from e-commerce platforms to content management systems.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-title">Web Development Instructor</div>
+                    <div class="experience-company">Online Teaching Platform</div>
+                    <div class="experience-date">2021 - Present</div>
+                    <div class="experience-description">
+                        Teaching HTML, CSS, JavaScript, and modern web development practices to over 100 students. Creating comprehensive course materials, conducting live coding sessions, and providing personalized mentorship. Maintaining a 4.8/5 student satisfaction rating.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-title">Junior Web Developer</div>
+                    <div class="experience-company">Tech Solutions Kenya</div>
+                    <div class="experience-date">2020 - 2022</div>
+                    <div class="experience-description">
+                        Worked on multiple client projects focusing on frontend development with React and backend integration with Django. Collaborated with cross-functional teams to deliver high-quality web applications. Gained experience in Agile methodologies and version control with Git.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🚀 Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">E-Commerce Platform</div>
+                    <div class="project-description">
+                        A full-featured online shopping platform with user authentication, product catalog, shopping cart, payment integration, and admin dashboard. Built with React frontend and Django REST API backend.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Stripe API</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Real-Time Chat Application</div>
+                    <div class="project-description">
+                        A modern messaging app with real-time communication, file sharing, and group chat features. Implemented WebSocket connections for instant message delivery and responsive UI design.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">WebSocket</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Portfolio Management System</div>
+                    <div class="project-description">
+                        A comprehensive CMS for creative professionals to showcase their work, manage clients, and handle project inquiries. Features include dynamic content management and SEO optimization.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">Vue.js</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">AWS</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Learning Management System</div>
+                    <div class="project-description">
+                        An educational platform with course creation, video hosting, quiz functionality, and progress tracking. Supports multiple user roles including instructors, students, and administrators.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Redis</span>
+                        <span class="tech-badge">Celery</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Task Management Dashboard</div>
+                    <div class="project-description">
+                        A productivity tool with drag-and-drop task boards, team collaboration features, time tracking, and analytics. Built with modern UI/UX principles for optimal user experience.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">GraphQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Restaurant Booking System</div>
+                    <div class="project-description">
+                        A reservation platform with table management, menu display, online ordering, and customer feedback system. Integrated with SMS notifications and email confirmations.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Twilio</span>
+                        <span class="tech-badge">Stripe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🛠️ Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-title">🎨 Frontend Development</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">SASS/SCSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">⚙️ Backend Development</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Django REST</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">FastAPI</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">🗄️ Database & Storage</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">Firebase</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">🔧 Tools & Technologies</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git & GitHub</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Webpack</span>
+                        <span class="skill-tag">NPM/Yarn</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">GraphQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">☁️ Cloud & Deployment</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Heroku</span>
+                        <span class="skill-tag">Vercel</span>
+                        <span class="skill-tag">Netlify</span>
+                        <span class="skill-tag">Digital Ocean</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">📱 Other Skills</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Responsive Design</span>
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">SEO</span>
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Testing</span>
+                        <span class="skill-tag">Performance Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🎓 Education & Certifications</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-title">Bachelor of Science in Information Technology</div>
+                    <div class="experience-company">University of Nairobi</div>
+                    <div class="experience-date">2019 - 2023</div>
+                    <div class="experience-description">
+                        Comprehensive study of computer science fundamentals, software engineering principles, database management, and web technologies. Graduated with honors, maintaining a GPA of 3.7/4.0. Completed capstone project on "Modern Web Application Architecture using Microservices."
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-title">Advanced Web Development Bootcamp</div>
+                    <div class="experience-company">Udemy / Online Learning</div>
+                    <div class="experience-date">2022</div>
+                    <div class="experience-description">
+                        Intensive 12-week program covering advanced React patterns, Node.js backend development, database design, and deployment strategies. Built 10+ real-world projects and earned certification in Full Stack Development.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-title">Professional Certifications</div>
+                    <div class="experience-company">Various Providers</div>
+                    <div class="experience-date">2020 - Present</div>
+                    <div class="experience-description">
+                        • AWS Certified Cloud Practitioner<br>
+                        • React Developer Certification - Meta<br>
+                        • Python for Data Science - Coursera<br>
+                        • Advanced JavaScript Concepts - Udemy<br>
+                        • Responsive Web Design - freeCodeCamp<br>
+                        • Git & GitHub Mastery - Pluralsight
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🏆 Achievements & Awards</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">🥇 Best Student Project Award</div>
+                    <div class="project-description">
+                        Received recognition for developing an innovative learning management system that improved student engagement by 40%. Project was selected among 100+ submissions at the university tech showcase.
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">⭐ Top Rated Instructor</div>
+                    <div class="project-description">
+                        Achieved "Top Rated" status on online teaching platform with 4.9/5 average rating from over 200 student reviews. Recognized for clear teaching methodology and student support.
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">🚀 Hackathon Winner</div>
+                    <div class="project-description">
+                        First place winner at Nairobi Tech Hackathon 2023 for developing a real-time disaster response coordination system using React and Django. Led a team of 4 developers.
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">💻 Open Source Contributor</div>
+                    <div class="project-description">
+                        Active contributor to multiple open-source projects on GitHub with over 500 contributions in the past year. Maintained personal projects with 1000+ stars combined.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">💡 Services Offered</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-title">🌐 Web Development</div>
+                    <div class="experience-description">
+                        Custom website development from scratch, responsive design implementation, e-commerce solutions, content management systems, and API integration. Specializing in React, Django, and Laravel frameworks.
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">📱 Full Stack Applications</div>
+                    <div class="experience-description">
+                        End-to-end application development including frontend, backend, database design, authentication systems, payment integration, and cloud deployment. Modern tech stack with scalability in mind.
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">👨‍🏫 Technical Training</div>
+                    <div class="experience-description">
+                        One-on-one mentoring, group workshops, corporate training sessions, and online courses in HTML, CSS, JavaScript, React, and Python. Customized curriculum based on student needs and goals.
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">🔧 Website Maintenance</div>
+                    <div class="experience-description">
+                        Ongoing website support, bug fixes, performance optimization, security updates, content updates, and technical support. Monthly maintenance packages available.
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">🎨 UI/UX Consultation</div>
+                    <div class="experience-description">
+                        User interface design, user experience optimization, wireframing, prototyping, and design system creation. Focus on creating intuitive and accessible web experiences.
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">⚡ Performance Optimization</div>
+                    <div class="experience-description">
+                        Website speed optimization, SEO improvements, code refactoring, database optimization, and implementation of best practices for faster load times and better user experience.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📝 Technical Blog & Articles</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">Understanding React Hooks</div>
+                    <div class="project-description">
+                        A comprehensive guide to React Hooks including useState, useEffect, useContext, and custom hooks. Includes practical examples and common pitfalls to avoid.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">1.5K Views</span>
+                        <span class="tech-badge">50+ Likes</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Django REST API Best Practices</div>
+                    <div class="project-description">
+                        Learn how to build scalable RESTful APIs with Django REST Framework. Covers authentication, pagination, filtering, and performance optimization techniques.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">2.2K Views</span>
+                        <span class="tech-badge">75+ Likes</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Modern CSS Techniques</div>
+                    <div class="project-description">
+                        Exploring CSS Grid, Flexbox, animations, and responsive design patterns. Practical examples for creating modern, beautiful user interfaces without frameworks.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">1.8K Views</span>
+                        <span class="tech-badge">60+ Likes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🎯 Current Focus & Goals</h2>
+            <div class="contact-section">
+                <div class="bio">
+                    <strong>📚 Learning:</strong> Currently deepening my knowledge in TypeScript, GraphQL, and microservices architecture. Exploring serverless computing with AWS Lambda and studying system design principles for large-scale applications.
+                </div>
+                <div class="bio">
+                    <strong>🔨 Building:</strong> Working on a SaaS platform for small businesses to manage their operations. Also developing an open-source component library for React developers.
+                </div>
+                <div class="bio">
+                    <strong>🤝 Contributing:</strong> Actively contributing to open-source projects, writing technical articles, and mentoring junior developers in the community.
+                </div>
+                <div class="bio">
+                    <strong>🎓 Teaching:</strong> Expanding my online course offerings to include advanced React patterns, Django best practices, and full-stack development bootcamps.
+                </div>
+                <div class="bio">
+                    <strong>💼 Career Goals:</strong> Aspiring to work on challenging projects that make a real impact. Open to full-time opportunities, freelance projects, and collaborative ventures. Long-term goal is to build a software development agency helping businesses transform digitally.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📞 Contact Information</h2>
+            <div class="contact-section">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>eli.kiprop@webdev.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+254 712 345 678</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Nairobi, Kenya</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h4>Website</h4>
+                            <p>www.elikiprop.dev</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-details">
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/elikiprop</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">⚡</div>
+                        <div class="contact-details">
+                            <h4>GitHub</h4>
+                            <p>github.com/elikiprop</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(102, 126, 234, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="color: #4a5568; font-size: 1.1rem; line-height: 1.6;">
+                        💬 <strong>Let's Work Together!</strong><br>
+                        I'm always interested in hearing about new projects and opportunities. Whether you need a website, want to learn web development, or just want to connect, feel free to reach out. I typically respond within 24 hours.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🔗 Connect With Me</h2>
+            <div class="social-links">
+                <a href="https://github.com/elikiprop" class="social-link" title="GitHub" target="_blank">
+                    <span>⚡</span>
+                </a>
+                <a href="https://linkedin.com/in/elikiprop" class="social-link" title="LinkedIn" target="_blank">
+                    <span>💼</span>
+                </a>
+                <a href="https://twitter.com/elikiprop" class="social-link" title="Twitter" target="_blank">
+                    <span>🐦</span>
+                </a>
+                <a href="https://elikiprop.dev" class="social-link" title="Portfolio Website" target="_blank">
+                    <span>🌐</span>
+                </a>
+                <a href="https://dev.to/elikiprop" class="social-link" title="Dev.to Blog" target="_blank">
+                    <span>📝</span>
+                </a>
+                <a href="mailto:eli.kiprop@webdev.com" class="social-link" title="Email" target="_blank">
+                    <span>📧</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(102, 126, 234, 0.1);">
+            <p style="color: #4a5568; font-size: 0.95rem; margin-bottom: 1rem;">
+                Thank you for visiting my portfolio! 🚀
+            </p>
+            <p style="color: #718096; font-size: 0.85rem;">
+                © 2025 Eli Kiprop Ndiema. All rights reserved. | Built with passion and modern web technologies
+            </p>
         </div>
     </div>
 
     <script>
-        // Add interactive hover effects
+        // Enhanced interactive effects
         document.querySelectorAll('.skill-tag').forEach(tag => {
             tag.addEventListener('mouseenter', function() {
                 this.style.background = 'linear-gradient(135deg, #764ba2, #667eea)';
@@ -355,9 +1088,16 @@
             tag.addEventListener('mouseleave', function() {
                 this.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
             });
+
+            tag.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            });
         });
 
-        // Add click effect to profile image
+        // Profile image animation
         document.querySelector('.profile-image').addEventListener('click', function() {
             this.style.animation = 'none';
             setTimeout(() => {
@@ -379,6 +1119,104 @@
                 element.style.transform = `translate(${xMove}px, ${yMove}px)`;
             });
         });
+
+        // Project card hover effects
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderLeft = '4px solid #667eea';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderLeft = '';
+            });
+        });
+
+        // Skill category interactions
+        document.querySelectorAll('.skill-category').forEach(category => {
+            category.addEventListener('click', function() {
+                this.style.background = 'rgba(102, 126, 234, 0.05)';
+                setTimeout(() => {
+                    this.style.background = 'white';
+                }, 200);
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Stat counter animation
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            const finalValue = stat.textContent;
+            const numericValue = parseInt(finalValue);
+            if (!isNaN(numericValue)) {
+                let currentValue = 0;
+                const increment = numericValue / 50;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= numericValue) {
+                        stat.textContent = finalValue;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(currentValue) + (finalValue.includes('+') ? '+' : '');
+                    }
+                }, 30);
+            }
+        });
+
+        // Add ripple effect to social links
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.width = ripple.style.height = '100px';
+                ripple.style.marginLeft = ripple.style.marginTop = '-50px';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Console message for developers
+        console.log('%c👋 Hello Developer!', 'font-size: 20px; font-weight: bold; color: #667eea;');
+        console.log('%cInterested in how this portfolio was built? Let\'s connect!', 'font-size: 14px; color: #4a5568;');
+        console.log('%c📧 eli.kiprop@webdev.com', 'font-size: 14px; color: #764ba2; font-weight: bold;');
     </script>
 </body>
 </html>
